@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block btn %}
+<a class="btn btn-primary m-2" href="{% url 'tweet_list'%}" role="button">Home</a>
+{% endblock btn %}
+{% block content %}
+<h2 style="text-align:center;font-size:3rem;font-weight:900;margin-top:1rem" class="h">
+  {% if form.instance.pk  %}
+  Edit Post
+  {% else %}
+  Create Post
+  {% endif  %}
+</h2>
+<div class="container-fluid" style="height:80vh;display:flex;align-items:center;justify-content:center">
+  <form method="post" enctype='multipart/form-data' class="form  rounded p-3 f" style="background-color:#0d1321;text-align:center">
+    {% csrf_token %}
+    <h4 style="margin:1rem">{{form.Text.label_tag}}</h4>
+    {{form.Text}}
+    <br>
+    <h4 style="margin-top:0.5rem;margin-bottom:0.5rem">{{form.photo.label_tag}}</h4>
+    <div class=" w-100 ph p-1.5">
+      {{form.photo}}
+    </div>
+    <br>
+    <button class="btn btn-success mt-3" type="submit">Post</button>
+  </form>
+</div>
+
+<style>
+  .hum {
+    background-color: black;
+    color:white;
+  }
+
+  .hum1 {
+    background-color: white;
+    color:black;
+  }
+  #id_Text{
+    height:5rem;
+    padding:1.5rem;
+    font-weight:400;
+  }
+  .ph{
+    padding:0.5rem;
+    background-color: #f8f9fa;
+    color:black;
+    height:7rem;
+    text-align:start;
+    font-size:1rem;
+    font-weight:600;
+  }
+  .m{
+    color:white;
+  }
+  .p{
+    color:black;
+  }
+</style>
+<script>
+  let btn1 = document.querySelector('.hey');
+  let btn2 = document.querySelector('.hello');
+  let mai = document.querySelector('body');
+  let f=document.querySelector('.f');
+  let h=document.querySelector('.h');
+  console.log(mai);
+  console.log(btn1);
+  console.log(btn2);
+  btn1.addEventListener('click', () => {
+    // mai.classList.add('hum1');
+    if (mai.classList.contains('hum')) {
+      mai.classList.remove('hum');
+      mai.classList.add('hum1');
+      btn1.innerText = 'Dark';
+      btn1.classList.remove('hum1')
+      btn1.classList.add('hum')
+      f.classList.add('m');
+      h.classList.add('p');
+    } else {
+      mai.classList.remove('hum1');
+      mai.classList.add('hum');
+      btn1.innerText = 'Light';
+      btn1.classList.remove('hum');
+      btn1.classList.add('hum1');
+      h.classList.remove('p');
+    }
+    // alert("hello");
+  })
+</script>
+{% endblock content %}

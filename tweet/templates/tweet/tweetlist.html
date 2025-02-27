@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+{% block btn %}
+<li class="nav-item">
+  <a class="btn btn-primary m-2" href="{% url 'tweet_create'%}" role="button">Post</a>
+</li>
+{% endblock btn %}
+
+
+{% block content %}
+<!-- Button trigger modal -->
+<a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="position:fixed;bottom:25%;z-index:10;left:5px" href="{% url 'chatbot' %}">
+ <div  style="width: 3rem; height: 3rem;background-color:rgb(107, 85, 107);padding:5px;border-radius:5px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="comments-robot">
+  <path fill="#00acea" d="M355.97,345.8H156.03V114.91h78.08v20.26h-.43a17.535,17.535,0,0,0,0,35.07h.43v42.23h43.32v24.14H259.41a44.839,44.839,0,0,0-44.84,44.84v26.62H413.43V281.45a44.839,44.839,0,0,0-44.84-44.84H350.57V212.47h43.32V170.24h.43a17.535,17.535,0,0,0,0-35.07h-.43V114.91h81.09V399.95L399.41,345.8Z"></path>
+  <path fill="#f4b844" d="M234.11 135.17v35.07h-.43a17.535 17.535 0 0 1 0-35.07zM406.72 140.31a17.536 17.536 0 0 1-12.4 29.93h-.43V135.17h.43A17.473 17.473 0 0 1 406.72 140.31z"></path>
+  <circle cx="314" cy="66.79" r="14.25" fill="#f4b844"></circle>
+  <rect width="22.56" height="22.57" x="334.78" y="125.45" fill="#f4b844"></rect>
+  <rect width="22.56" height="22.57" x="270.66" y="125.45" fill="#f4b844"></rect>
+  <rect width="79.4" height="21.53" x="274.3" y="170.58" fill="#f4b844"></rect>
+  <polygon fill="#f4b844" points="350.57 236.03 350.57 236.61 277.43 236.61 277.43 236.03 277.43 212.93 277.43 212.47 350.57 212.47 350.57 236.03"></polygon>
+  <rect width="100.86" height="35.44" x="263.57" y="272.63" fill="#f4b844"></rect>
+  <path fill="#fedb41" d="M413.43 281.45v26.62h-49V272.63H263.57v35.44h-49V281.45a44.839 44.839 0 0 1 44.84-44.84H368.59A44.839 44.839 0 0 1 413.43 281.45zM234.11 114.91V100.19H393.89V212.47H234.11V114.91zm123.23 33.11V125.45H334.78v22.57zm-3.64 44.09V170.58H274.3v21.53zm-60.48-44.09V125.45H270.66v22.57z"></path>
+  <polygon fill="#00efd1" points="355.97 345.8 355.97 405.3 112.59 405.3 37.02 459.46 37.02 174.42 155.64 174.42 156.03 174.42 156.03 345.8 355.97 345.8"></polygon>
+  <path fill="#083863" d="M474.98,107H402v-6.81A8.258,8.258,0,0,0,393.89,92H321V87.906a22.255,22.255,0,1,0-16-.775V92H234.11a8.258,8.258,0,0,0-8.11,8.19V107H156.03a7.95,7.95,0,0,0-8.03,7.91V166H37.02C32.6,166,29,170,29,174.42V459.46a8.013,8.013,0,0,0,8.014,8,8.172,8.172,0,0,0,4.664-1.648L115.16,413H355.97a7.776,7.776,0,0,0,8.03-7.7V354h32.84l73.48,52.553A7.948,7.948,0,0,0,474.981,408,8.077,8.077,0,0,0,483,399.95V114.91A7.941,7.941,0,0,0,474.98,107ZM402,146.926a11.523,11.523,0,0,1,1.96,5.784,11.158,11.158,0,0,1-1.96,5.766ZM314,60.54a6.25,6.25,0,1,1-6.25,6.25A6.257,6.257,0,0,1,314,60.54Zm-72,54.975c0-.2.03-.4.03-.605s-.03-.4-.03-.595V108H386v96H242ZM364.43,265H263.57a7.334,7.334,0,0,0-7.57,7.63V300H223V281.45A36.185,36.185,0,0,1,259.41,245H368.59A36.185,36.185,0,0,1,405,281.45V300H372V272.63A7.334,7.334,0,0,0,364.43,265ZM356,281v19H272V281Zm-13-52H285v-9h58Zm5,168H112.59a8.182,8.182,0,0,0-4.67,1.647L45,443.884V182H148V345.8a8.2,8.2,0,0,0,8.03,8.2H348Zm119-12.624L404.08,339.4a7.935,7.935,0,0,0-4.67-1.4H164V123h62v5.309a24.722,24.722,0,0,0-10.432,6.344,25.4,25.4,0,0,0-7.5,18.057A26.054,26.054,0,0,0,226,177.094V212.47c0,4.419,3.692,7.53,8.11,7.53H269v9h-9.59A52.2,52.2,0,0,0,207,281.45v26.62c0,4.418,3.152,7.93,7.57,7.93H413.43c4.418,0,7.57-3.512,7.57-7.93V281.45A52.2,52.2,0,0,0,368.59,229H359v-9h34.89c4.418,0,8.11-3.111,8.11-7.53V177.094a26.028,26.028,0,0,0,17.9-24.384,25.339,25.339,0,0,0-7.444-18.056A24.8,24.8,0,0,0,402,128.309V123h65ZM226,146.925v11.551a11.158,11.158,0,0,1-1.96-5.766A11.53,11.53,0,0,1,226,146.925Z"></path>
+  <path fill="#083863" d="M353 163H274a8 8 0 0 0-8 8v22a8 8 0 0 0 8 8h79a8 8 0 0 0 8-8V171A8 8 0 0 0 353 163zm-7 21H282v-5h64zM294 156a8 8 0 0 0 8-8V125a8 8 0 0 0-8-8H271a8 8 0 0 0-8 8v23a8 8 0 0 0 8 8zm-15-23h6v7h-6zM358 117H335a8 8 0 0 0-8 8v23a8 8 0 0 0 8 8h23a8 8 0 0 0 8-8V125A8 8 0 0 0 358 117zm-9 23h-6v-7h6z"></path>
+</svg></div>
+</a>
+
+<!-- Modal -->
+{% if user.is_authenticated  %}
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog " style="background-color:black;color:white">
+    <div class="modal-content" style="background-color:black;color:white">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Gyanni</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <form id="chatbot-form">
+          {% csrf_token %}
+          <input type="text" id="chat-message" name="message" class="form-control" placeholder="Type your message...">
+          <button type="submit" class="btn btn-primary mt-2">Send</button>
+        </form>
+
+        <div id="chatbot-response" class="mt-3"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog " style="background-color:black;color:white">
+    <div class="modal-content" style="background-color:black;color:white">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Gyanni</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+       Please Login to use Chat bot.
+        <div id="chatbot-response" class="mt-3"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif  %}
+<div class="container text-center">
+  <div class="row row-cols-4" style="margin-top:5rem;gap:2rem">
+    {% for tweet in tweets %}
+      {% for pu in pu %}
+        {% if tweet.user == pu.user and pu.razor_pay_order_id %}
+          <div class="card p-0 bg-dark ms-3" style="width: 18rem;">
+            {% if tweet.photo %}
+              <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image" style="height:10rem;object-fit:contain;background-color:#0d1321">
+            {% else %}
+              <img src="..." class="card-img-top" alt="No Image" style="height:10rem;object-fit:contain;background-color:#0d1321">
+            {% endif %}
+            <div class="card-body bg-dark" style="text-align:start;padding:0;color:white">
+              <h5 class="card-title m-3 w-auto p-2 rounded" style="font-weight:700;border:0.2px white solid;background-color:#006d77;">
+                <span>{{ tweet.user.username }}</span>
+                <span style="font-size:0.9rem;margin-left:0.5rem;font-weight:400;color:black">(Premium User)</span>
+              </h5>
+              <p class="card-text m-3" style="height:13rem">{{ tweet.Text }}</p>
+              {% if tweet.user == user %}
+                <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-success m-3 ps-3 pe-3">Edit</a>
+                <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    
+    {% for tweet in tweets %}
+      {% if not tweet.user.premium_user.razor_pay_order_id %}
+        <div class="card p-0 bg-dark ms-3" style="width: 18rem;">
+          {% if tweet.photo %}
+            <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image" style="height:10rem;object-fit:contain;background-color:#0d1321">
+          {% else %}
+            <img src="..." class="card-img-top" alt="No Image" style="height:10rem;object-fit:contain;background-color:#0d1321">
+          {% endif %}
+          <div class="card-body bg-dark" style="text-align:start;padding:0;color:white">
+            <h5 class="card-title m-3 w-auto p-2 rounded" style="font-weight:700;border:0.2px white solid;background-color:#006d77;">
+              <span>{{ tweet.user.username }}</span>
+            </h5>
+            <p class="card-text m-3" style="height:13rem">{{ tweet.Text }}</p>
+            {% if tweet.user == user %}
+              <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-success m-3 ps-3 pe-3">Edit</a>
+              <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#chatbot-form").submit(function(e){
+      e.preventDefault();
+
+      var message = $("#chat-message").val();  
+      var csrfToken = $("input[name=csrfmiddlewaretoken]").val();  // CSRF token
+
+      $.ajax({
+        type: "POST",
+        url: "{% url 'chatbot' %}", 
+        data: {
+          message: message,
+          csrfmiddlewaretoken: csrfToken
+        },
+        success: function(response) {
+          // Display chatbot reply in the modal
+          $("#chatbot-response").html("<p><strong>Bot:</strong> " + response.reply + "</p>");
+        }
+      });
+    });
+  });
+</script>
+{% endblock content %}
+

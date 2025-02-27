@@ -1,0 +1,83 @@
+{% load static %}
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body class="hum m">
+    <div class="container-fluid" style="text-align:center;background-color:#023047">
+      <img src="{% static 'chirp.png'%}" class="img-fluid " alt="..." style="height:5rem" >
+    </div>
+    <nav class="navbar navbar-expand-lg p-1" style="background-color:#708d81">
+      <div class="container-fluid" style="background-color:#708d81">
+        <a class="navbar-brand" href="#">ChirpTalk</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color:#708d81">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="background-color:#708d81">
+            <li class="nav-item">
+              <a class="btn btn-primary m-2" href="{% url 'tweet_list'%}" role="button">Back</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-light m-2 hum1 hey" style="border-radius:50%">Light</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid" style="height:50vh;display:flex;align-items:center;justify-content:center">
+      <div class="container-fluid" style="text-align:center;font-size:3rem;font-weight:600">
+        <p>Are you Sure,You Want to Delete The Post?</p>
+        <form method="post">
+          {% csrf_token %}
+          <a class="btn btn-success m-2 ps-3 pe-3 pt-2 pb-2" href="{% url 'tweet_list'%}" role="button">Back</a>
+        <button type="submit" class="btn btn-danger p-2 " >Delete</button>
+        </form>
+      </div>
+    </div>
+    <nav class="navbar fixed-bottom  p-0 mt-5" style="background-color:#023047;color:white;display:flex;align-items:center;justify-content:center">
+      <div class="container-fluid p-0" style="background-color:#023047;color:white;display:flex;align-items:center;justify-content:center">
+        <p>&copy;
+          All Rights Reserved</p>
+      </div>
+    </nav>
+    <style>
+      .hum {
+        background-color: black;
+        color:white;
+      }
+    
+      .hum1 {
+        background-color: white;
+        color:black;
+      }
+    </style>
+    <script>
+      let btn1 = document.querySelector('.hey');
+      console.log(mai);
+      console.log(btn1);
+      btn1.addEventListener('click', () => {
+        // mai.classList.add('hum1');
+        if (mai.classList.contains('hum')) {
+          mai.classList.remove('hum');
+          mai.classList.add('hum1');
+          btn1.innerText = 'Dark';
+          btn1.classList.remove('hum1')
+          btn1.classList.add('hum')
+        } else {
+          mai.classList.remove('hum1');
+          mai.classList.add('hum');
+          btn1.innerText = 'Light';
+          btn1.classList.remove('hum');
+          btn1.classList.add('hum1');
+        }
+        // alert("hello");
+      })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

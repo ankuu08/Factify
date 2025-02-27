@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" style="height:70vh;display:flex;align-items:center;justify-content:center">
+ <div>
+  <form action="" method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <div class="p-2 rounded" style="background-color:white;color:black;font-size:1rem;font-weight:600">
+      {{form.user_photo}}
+    </div>
+    <br>
+    <div class="m-2" style="text-align:center">
+      <button type="submit" class="btn btn-primary">Upload</button>
+    </div>
+  </form>
+ </div>
+</div>
+{% endblock  %}

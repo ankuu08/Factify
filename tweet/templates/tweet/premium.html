@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content  %}
+<div style="height:70vh;width:100%;display:flex;align-items:center;justify-content:center">
+  <div style="width:100%;text-align:center">
+    <div style="background-color:;text-align:start;width:100%;display:flex;align-items:center;justify-content:center">
+      <div>
+        <span style="font-weight:500;font-size:1.2rem;font-family: 'Playfair Display', serif; ">.✅ Verified Badge – Stand out and gain credibility with a premium verification mark! ✅</span>
+      <br>
+      <span style="font-weight:500;font-size:1.2rem;font-family: 'Playfair Display', serif; ">.✅ Early Access – Be the first to try new features before anyone else! 🌟</span>
+      <br>
+    <span style="font-weight:500;font-size:1.2rem;font-family: 'Playfair Display', serif; ">.✅ Priority Support – Get help faster with our VIP support team! 🎧</span>
+    <br>
+    {% comment %} <span style="font-weight:500;font-size:1.5rem">🔓 Unlock your full potential—Upgrade to Premium today! 🔓</span> {% endcomment %}
+    <br>
+    <h3 style="font-family: 'Playfair Display', serif; ">🔓 Unlock your full potential—Upgrade to Premium today! 🔓</h3>
+      </div>
+    </div>
+    <div class="mt-3">
+      <button id="rzp-button1" type="submit" class="btn btn-primary" style="background-color:#DAA520;color:#333333;border:none;outline:none;box-shadow: 0px 0px 12px 3px rgba(255, 215, 0, 0.8);font-size:1.2rem;font-weight:600">Explore Premium</button>
+    </div>
+  </div>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+      "key": "rzp_test_ktyhN1tpsKfEvM", // Enter the Key ID generated from the Dashboard
+      "amount": "{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "Acme Corp",
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response){
+          /*alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature)*/
+          alert("Payment Successfull,Congratulations now, you are a premium user!")
+          window.location.href = "/";
+      },
+      "prefill": {
+          "name": "Gaurav Kumar",
+          "email": "gaurav.kumar@example.com",
+          "contact": "9000090000"
+      },
+      "notes": {
+          "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.on('payment.failed', function (response){
+          alert(response.error.code);
+          alert(response.error.description);
+          alert(response.error.source);
+          alert(response.error.step);
+          alert(response.error.reason);
+          alert(response.error.metadata.order_id);
+          alert(response.error.metadata.payment_id);
+  });
+  document.getElementById('rzp-button1').onclick = function(e){
+      rzp1.open();
+      e.preventDefault();
+  }
+  </script>
+{% endblock  %}
