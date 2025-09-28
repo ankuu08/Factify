@@ -185,19 +185,4 @@ def set_p_user(request):
       form=pu_form()
     return render(request,'tweet/profile.html',{'form':form})
   
-genai.configure(api_key=settings.GEMINI_API_KEY)
-def chatbot(request):
-    if request.method == "POST":
-        form = ChatbotForm(request.POST)
-        if form.is_valid():
-            user_message = form.cleaned_data["message"]
 
-            # Generate chatbot response
-            model = genai.GenerativeModel("gemini-pro")
-            response = model.generate_content(user_message)
-            reply = response.text
-
-            # Return JSON response for AJAX
-            return JsonResponse({"reply": reply})
-
-    return render(request, "chatbot.html", {"form": ChatbotForm()})
